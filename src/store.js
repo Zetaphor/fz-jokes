@@ -22,11 +22,15 @@ export default new Vuex.Store({
 
   mutations: {
     ADD_JOKE (state, jokeData) {
-      state.jokes[jokeData.id] = jokeData.joke
+      Vue.set(state.jokes, jokeData.id, jokeData.joke)
     },
 
     REMOVE_JOKE (state, jokeId) {
-      delete state.jokes[jokeId]
+      Vue.delete(state.jokes, jokeId)
+    },
+
+    CLEAR_JOKES (state) {
+      state.jokes = {}
     }
   },
 
