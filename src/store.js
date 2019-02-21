@@ -12,7 +12,7 @@ export default new Vuex.Store({
   strict: debug,
 
   state: {
-    apiUrl: 'https://icanhazdadjoke.com/',
+    apiUrl: 'https://icanhazdadjoke.com',
     apiConfig: {
       headers: {
         Accept: 'application/json'
@@ -58,6 +58,24 @@ export default new Vuex.Store({
     getRandomJoke (context) {
       Vue.http.get(context.state.apiUrl, context.state.apiConfig).then(resp => {
         context.commit('ADD_JOKE', resp.body)
+      }, error => {
+        console.log(error)
+      })
+    },
+
+    searchJokes (context, searchQuery) {
+      let searchConfig = context.state.apiConfig
+      searchConfig.params = {
+        limit: 30,
+        term: searchQuery
+      }
+      Vue.http.get(context.state.apiUrl + '/search', searchConfig).then(resp => {
+        context.commit('CLEAR_JOKES')
+        context.commit('CLEAR_SELECTIONS')
+        context.commit('SET_SELECT_MODE', false)
+        resp.body.results.forEach(joke => {
+          context.commit('ADD_JOKE', joke)
+        })
       }, error => {
         console.log(error)
       })

@@ -15,7 +15,7 @@
 
     <div class="row">
       <div class="col-4">
-        <button class="btn btn-primary" @click="getJoke">Get New Joke <i class="fas fa-plus"></i></button>
+        <button class="btn btn-primary" @click="getJoke">Get Random Joke <i class="fas fa-plus"></i></button>
       </div>
       <div class="col-4">
         <button class="btn btn-secondary" @click="enableSelectMode" v-if="!$store.state.downloadSelectMode">Download Multiple <i class="fas fa-file-export"></i></button>
@@ -51,7 +51,7 @@ export default {
     },
 
     searchJokes () {
-      console.log(this.searchQuery)
+      this.$store.dispatch('searchJokes', this.searchQuery)
     },
 
     enableSelectMode () {
