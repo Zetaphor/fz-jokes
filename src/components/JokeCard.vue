@@ -27,6 +27,10 @@ export default {
 
   data () {
     return {
+      /*
+        BUG: This doesn't get reset when selections are cleared from store
+        Could add a watch to fix this, or change model binding approach
+      */
       selected: false
     }
   },
