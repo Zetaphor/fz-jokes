@@ -41,7 +41,7 @@ export default {
     },
 
     removeJokes () {
-      this.$store.commit('CLEAR_JOKES')
+      this.$store.dispatch('removeJokes')
     },
 
     searchJokes () {
@@ -53,6 +53,7 @@ export default {
     },
 
     cancelSelection () {
+      this.$store.commit('CLEAR_SELECTIONS')
       this.$store.commit('SET_SELECT_MODE', false)
     },
 

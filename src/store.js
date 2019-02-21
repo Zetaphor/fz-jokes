@@ -39,6 +39,10 @@ export default new Vuex.Store({
       state.downloadSelectMode = mode
     },
 
+    CLEAR_SELECTIONS (state) {
+      state.downloadSelection = []
+    },
+
     SELECT_JOKE (state, jokeId) {
       state.downloadSelection.push(jokeId)
     },
@@ -56,6 +60,12 @@ export default new Vuex.Store({
       }, error => {
         console.log(error)
       })
+    },
+
+    removeJokes (context) {
+      context.commit('CLEAR_JOKES')
+      context.commit('CLEAR_SELECTIONS')
+      context.commit('SET_SELECT_MODE', false)
     }
   },
 
