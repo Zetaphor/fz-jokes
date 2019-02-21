@@ -72,7 +72,7 @@ export default new Vuex.Store({
     downloadJokes (context) {
       let jokeString = ''
       context.state.downloadSelection.forEach(jokeId => {
-        jokeString += context.state.jokes[jokeId] + '\r\n'
+        jokeString += context.state.jokes[jokeId] + '\r\n---\r\n'
       })
 
       var blob = new Blob([jokeString], { type: 'text/plain;charset=utf-8' })
