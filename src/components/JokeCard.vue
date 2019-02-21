@@ -6,7 +6,7 @@
           <button class="btn btn-outline-success" v-if="!$store.state.downloadSelectMode"><i class="fas fa-file-download"></i></button>
 
           <div class="custom-control custom-checkbox" v-else>
-            <input type="checkbox" class="custom-control-input" :id="jokeId">
+            <input type="checkbox" class="custom-control-input" :id="jokeId" v-model="selected" @change="selectionChanged">
             <label class="custom-control-label" :for="jokeId"></label>
           </div>
         </div>
@@ -25,6 +25,12 @@
 export default {
   name: 'JokeCard',
 
+  data () {
+    return {
+      selected: false
+    }
+  },
+
   props: {
     jokeId: String,
     text: String
@@ -33,6 +39,11 @@ export default {
   methods: {
     remove() {
       this.$store.commit('REMOVE_JOKE', this.jokeId)
+    },
+
+    selectionChanged () {
+      if (this.selected) this.$store.commit('SELECT_JOKE', this.jokeId)
+      else this.$store.commit('DESELECT_JOKE', this.jokeId)
     }
   }
 }

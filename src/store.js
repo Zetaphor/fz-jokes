@@ -37,6 +37,15 @@ export default new Vuex.Store({
 
     SET_SELECT_MODE (state, mode) {
       state.downloadSelectMode = mode
+    },
+
+    SELECT_JOKE (state, jokeId) {
+      state.downloadSelection.push(jokeId)
+    },
+
+    DESELECT_JOKE (state, jokeId) {
+      let index = state.downloadSelection.indexOf(jokeId)
+      state.downloadSelection.splice(index, 1)
     }
   },
 
@@ -51,6 +60,10 @@ export default new Vuex.Store({
   },
 
   downloadJokes (context) {
+
+  },
+
+  downloadJoke (context) {
 
   }
 })
