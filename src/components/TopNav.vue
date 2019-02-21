@@ -58,7 +58,7 @@ export default {
     },
 
     downloadSelected () {
-
+      this.$store.dispatch('downloadJokes')
     }
   }
 }

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import VueResource from 'vue-resource'
+import saveAs from 'file-saver'
 
 Vue.use(Vuex)
 Vue.use(VueResource)
@@ -66,14 +67,21 @@ export default new Vuex.Store({
       context.commit('CLEAR_JOKES')
       context.commit('CLEAR_SELECTIONS')
       context.commit('SET_SELECT_MODE', false)
+    },
+
+    downloadJokes (context) {
+      let jokeString = ''
+      context.state.downloadSelection.forEach(jokeId => {
+        jokeString += context.state.jokes[jokeId] + '\r\n'
+      })
+
+      var blob = new Blob([jokeString], { type: 'text/plain;charset=utf-8' })
+      saveAs(blob, 'multipleJokes.txt')
+    },
+
+    downloadJoke (context, jokeId) {
+      var blob = new Blob([context.state.jokes[jokeId]], { type: 'text/plain;charset=utf-8' })
+      saveAs(blob, 'singleJoke.txt')
     }
-  },
-
-  downloadJokes (context) {
-
-  },
-
-  downloadJoke (context) {
-
   }
 })
