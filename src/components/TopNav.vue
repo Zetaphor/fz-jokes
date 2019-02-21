@@ -4,9 +4,9 @@
 
     <div class="row">
       <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Joke Keywords">
+        <input type="text" class="form-control" placeholder="Joke Keywords" v-model="searchQuery" @keyup.enter="searchJokes">
         <div class="input-group-append">
-          <button class="btn btn-outline-secondary">
+          <button class="btn btn-outline-secondary" @click="searchJokes">
             Search <i class="fas fa-search pl-2"></i>
           </button>
         </div>
@@ -20,7 +20,7 @@
       <div class="col-4">
         <button class="btn btn-secondary" @click="enableSelectMode" v-if="!$store.state.downloadSelectMode">Download Multiple <i class="fas fa-file-export"></i></button>
         <span v-else>
-          <button class="btn btn-outline-success" @click="downloadSelected">Download <i class="fas fa-file-export"></i></button>
+          <button class="btn btn-outline-success" @click="downloadSelected" :disabled="!$store.state.downloadSelection.length">Download <i class="fas fa-file-export"></i></button>
           <button class="btn btn-outline-danger" @click="cancelSelection">Cancel <i class="fas fa-ban"></i></button>
         </span>
       </div>
@@ -35,6 +35,12 @@
 export default {
   name: 'TopNav',
 
+  data () {
+    return {
+      searchQuery: ''
+    }
+  },
+
   methods: {
     getJoke () {
       this.$store.dispatch('getRandomJoke')
@@ -45,7 +51,7 @@ export default {
     },
 
     searchJokes () {
-
+      console.log(this.searchQuery)
     },
 
     enableSelectMode () {
@@ -58,7 +64,8 @@ export default {
     },
 
     downloadSelected () {
-      this.$store.dispatch('downloadJokes')
+      if (this.$store.state.downloadSelection.length === 1) this.$store.dispatch('downloadJoke', this.$store.state.downloadSelection[0])
+      else this.$store.dispatch('downloadJokes')
     }
   }
 }
