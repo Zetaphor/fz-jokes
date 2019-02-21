@@ -3,7 +3,12 @@
     <div class="card-body">
       <div class="row">
         <div class="col-1">
-          <button class="btn btn-outline-success"><i class="fas fa-file-download"></i></button>
+          <button class="btn btn-outline-success" v-if="!$store.state.downloadSelectMode"><i class="fas fa-file-download"></i></button>
+
+          <div class="custom-control custom-checkbox" v-else>
+            <input type="checkbox" class="custom-control-input" :id="jokeId">
+            <label class="custom-control-label" :for="jokeId"></label>
+          </div>
         </div>
         <div class="col-10">
           <p class="card-text">{{ text }}</p>

@@ -17,7 +17,9 @@ export default new Vuex.Store({
         Accept: 'application/json'
       }
     },
-    jokes: {}
+    jokes: {},
+    downloadSelectMode: false,
+    downloadSelection: []
   },
 
   mutations: {
@@ -31,6 +33,10 @@ export default new Vuex.Store({
 
     CLEAR_JOKES (state) {
       state.jokes = {}
+    },
+
+    SET_SELECT_MODE (state, mode) {
+      state.downloadSelectMode = mode
     }
   },
 
@@ -42,5 +48,9 @@ export default new Vuex.Store({
         console.log(error)
       })
     }
+  },
+
+  downloadJokes (context) {
+
   }
 })

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container mt-3">
     <p v-if="!totalJokes">Search or click the button to view a joke</p>
     <p v-else>Showing {{ totalJokes }} <span v-if="totalJokes > 1">jokes</span><span v-else>joke</span></p>
     <joke-card v-for="(joke, id) in $store.state.jokes" :key="id" :jokeId="id" :text="joke"></joke-card>
