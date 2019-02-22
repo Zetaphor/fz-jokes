@@ -14,17 +14,17 @@
     </div>
 
     <div class="row">
-      <div class="col-4">
+      <div class="col-lg-4 col-sm-12 mt-2">
         <button class="btn btn-primary" @click="getJoke">Get Random Joke <i class="fas fa-plus"></i></button>
       </div>
-      <div class="col-4">
+      <div class="col-lg-4 col-sm-12 mt-2">
         <button class="btn btn-secondary" @click="enableSelectMode" v-if="!$store.state.downloadSelectMode">Download Multiple <i class="fas fa-file-export"></i></button>
         <span v-else>
           <button class="btn btn-outline-success" @click="downloadSelected" :disabled="!$store.state.downloadSelection.length">Download <i class="fas fa-file-export"></i></button>
           <button class="btn btn-outline-danger" @click="cancelSelection">Cancel <i class="fas fa-ban"></i></button>
         </span>
       </div>
-      <div class="col-4">
+      <div class="col-lg-4 col-sm-12 mt-2">
         <button class="btn btn-danger" @click="removeJokes">Clear <i class="fas fa-ban"></i></button>
       </div>
     </div>

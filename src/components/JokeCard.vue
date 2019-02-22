@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card-body">
       <div class="row">
-        <div class="col-1">
+        <div class="col-lg-1 col-sm-12">
           <button class="btn btn-outline-success" v-if="!$store.state.downloadSelectMode" @click="download"><i class="fas fa-file-download"></i></button>
 
           <div class="custom-control custom-checkbox" v-else>
@@ -10,10 +10,10 @@
             <label class="custom-control-label" :for="jokeId"></label>
           </div>
         </div>
-        <div class="col-10">
+        <div class="col-lg-10 col-sm-12 mt-2 mb-2">
           <p class="card-text">{{ text }}</p>
         </div>
-        <div class="col-1 btn-delete">
+        <div class="col-lg-1 btn-delete col-sm-12">
           <button class="btn btn-outline-danger" @click="remove"><i class="fas fa-trash-alt"></i></button>
         </div>
       </div>
