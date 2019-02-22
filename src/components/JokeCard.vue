@@ -41,7 +41,7 @@ export default {
   },
 
   methods: {
-    remove() {
+    remove () {
       this.$store.commit('REMOVE_JOKE', this.jokeId)
     },
 
