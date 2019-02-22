@@ -59,7 +59,7 @@ export default new Vuex.Store({
       Vue.http.get(context.state.apiUrl, context.state.apiConfig).then(resp => {
         context.commit('ADD_JOKE', resp.body)
       }, error => {
-        console.log(error)
+        console.error(error)
       })
     },
 
@@ -77,7 +77,7 @@ export default new Vuex.Store({
           context.commit('ADD_JOKE', joke)
         })
       }, error => {
-        console.log(error)
+        console.error(error)
       })
     },
 
